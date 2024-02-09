@@ -1,5 +1,5 @@
 package org.example.tap2024.vistas;
-
+//git pull es solo para uso de manera colaborativa
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
