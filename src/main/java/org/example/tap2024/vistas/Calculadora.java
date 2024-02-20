@@ -14,11 +14,11 @@ public class Calculadora extends Stage {
     private GridPane gdpTeclado;
     private TextField txtPantalla;
     private Button[][] arBotones = new Button[4][4];
-    private char[] arEtiquetas = {'7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'};
+    private char[] arEtiquetas = {'7','8','9','/','4','5','6','*','1','2','3','-','.','0','=','+'};
 
     public Calculadora() {
         CrearUI();
-        this.setTitle("Mi primer Calculadora :)");
+        this.setTitle("Mi primer Calculadora");
         this.setScene(escena);
         this.show();
     }
@@ -30,6 +30,7 @@ public class Calculadora extends Stage {
         vContenedor = new VBox(txtPantalla,gdpTeclado);
         vContenedor.setSpacing(5);
         escena = new Scene(vContenedor,200,200);
+        escena.getStylesheets().add(getClass().getResource("/estilos/calculadora.css").toString());
     }
 
     private void CrearTeclado() {
@@ -42,6 +43,11 @@ public class Calculadora extends Stage {
                 int finalPos = pos;
                 arBotones[i][j].setOnAction(event -> setValue(arEtiquetas[finalPos]));
                 gdpTeclado.add(arBotones[i][j],j,i);
+
+                //Dar estilos según un ID
+                if (arEtiquetas[pos] == '+' || arEtiquetas[pos] == '-' || arEtiquetas[pos] == '*' || arEtiquetas[pos] == '/')
+                    arBotones[i][j].setId("color-operador");
+
                 pos++;
             }
         }

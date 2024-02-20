@@ -37,6 +37,7 @@ public class HelloApplication extends Application {
 
         /* Menu primer parcial */
         mitCalculadora = new MenuItem("Calculadora");
+        mitCalculadora.setOnAction(event -> new Calculadora());
         menParcial1 = new Menu("Primer Parcial");
         menParcial1.getItems().addAll(mitCalculadora);
 
