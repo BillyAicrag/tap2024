@@ -8,6 +8,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.example.tap2024.modelos.Conexion;
 import org.example.tap2024.vistas.Calculadora;
 
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setMaximized(true);
+
+        Conexion.crearConexion();
     }
 
     private void CrearMenu() {
