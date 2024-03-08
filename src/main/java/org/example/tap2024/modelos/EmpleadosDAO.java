@@ -7,12 +7,61 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class EmpleadosDAO {
-    int idEmpleado;
-    String nomEmpleado;
-    String rfcEmpleado;
-    float salario;
-    String telefono;
-    String direccion;
+
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public String getNomEmpleado() {
+        return nomEmpleado;
+    }
+
+    public String getRfcEmpleado() {
+        return rfcEmpleado;
+    }
+
+    public float getSalario() {
+        return salario;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
+    public void setNomEmpleado(String nomEmpleado) {
+        this.nomEmpleado = nomEmpleado;
+    }
+
+    public void setRfcEmpleado(String rfcEmpleado) {
+        this.rfcEmpleado = rfcEmpleado;
+    }
+
+    public void setSalario(float salario) {
+        this.salario = salario;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    private int idEmpleado;
+    private String  nomEmpleado;
+    private String rfcEmpleado;
+    private float salario;
+    private String telefono;
+    private String direccion;
 
     public void insertar(){
         String query = "INSERT INTO Empleado(nomEmpleado,rfcEmpleado,salario,telefono,direccion) VALUES('" +nomEmpleado+ "','" +rfcEmpleado+ "'," +salario+ ",'" +telefono+ "','" +direccion+ "')";

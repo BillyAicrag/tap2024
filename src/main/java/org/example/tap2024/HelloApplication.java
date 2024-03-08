@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.example.tap2024.modelos.Conexion;
 import org.example.tap2024.vistas.Calculadora;
+import org.example.tap2024.vistas.EmpleadoTaqueria;
 
 import java.io.IOException;
 
@@ -17,7 +18,7 @@ public class HelloApplication extends Application {
 
     private MenuBar mnbPrincipal;
     private Menu menParcial1, menParcial2, menSalir;
-    private MenuItem mitCalculadora, mitSalir;
+    private MenuItem mitCalculadora, mitSalir,mitEmpleado;
     private BorderPane bdpPanel;
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,8 +42,12 @@ public class HelloApplication extends Application {
         /* Menu primer parcial */
         mitCalculadora = new MenuItem("Calculadora");
         mitCalculadora.setOnAction(event -> new Calculadora());
+
+        mitEmpleado = new MenuItem("Empleado Taqueria");
+        mitEmpleado.setOnAction(event -> new EmpleadoTaqueria());
+
         menParcial1 = new Menu("Primer Parcial");
-        menParcial1.getItems().addAll(mitCalculadora);
+        menParcial1.getItems().addAll(mitCalculadora,mitEmpleado);
 
         /* Menu segundo parcial */
         menParcial2 = new Menu("Segundo Parcial");
