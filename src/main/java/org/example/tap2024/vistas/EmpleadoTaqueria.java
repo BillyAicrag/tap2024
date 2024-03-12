@@ -1,19 +1,22 @@
 package org.example.tap2024.vistas;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.ToolBar;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+import org.example.tap2024.components.ButtonCell;
 import org.example.tap2024.modelos.EmpleadosDAO;
+import org.kordamp.bootstrapfx.BootstrapFX;
+import org.kordamp.bootstrapfx.scene.layout.Panel;
 
 public class EmpleadoTaqueria extends Stage {
 
-    private VBox vbxPrincipal;
+    private Panel pnlPrincipal;
+    private BorderPane bdpPrincipal;
     private ToolBar tlbMenu;
     private Scene escena;
     private Button btnAgregarEmpleado;
@@ -36,8 +39,14 @@ public class EmpleadoTaqueria extends Stage {
         tlbMenu = new ToolBar(btnAgregarEmpleado);
 
         CrearTable();
-        vbxPrincipal = new VBox(tlbMenu,tbvEmpleados);
-        escena = new Scene(vbxPrincipal,700,400);
+        bdpPrincipal = new BorderPane();
+        bdpPrincipal.setTop(tlbMenu);
+        bdpPrincipal.setCenter(tbvEmpleados);
+        pnlPrincipal = new Panel("Taqueria");
+        pnlPrincipal.getStyleClass().add("panel-primary");
+        pnlPrincipal.setBody(bdpPrincipal);
+        escena = new Scene(pnlPrincipal,700,400);
+        escena.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
     }
 
     private void CrearTable() {
@@ -58,7 +67,27 @@ public class EmpleadoTaqueria extends Stage {
         TableColumn<EmpleadosDAO,String> tbcDirEmp = new TableColumn<>("Direccion");
         tbcDirEmp.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
-        tbvEmpleados.getColumns().addAll(tbcNomEmp,tbcRfcEmp,tbcSueldoEmp,tbcTelEmp,tbcDirEmp);
+        TableColumn<EmpleadosDAO,String> tbcEditar = new TableColumn<EmpleadosDAO,String>("Editar");
+         tbcEditar.setCellFactory(
+                 new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
+                    @Override
+                    public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
+                        return new ButtonCell(1);
+                    }
+                }
+        );
+
+        TableColumn<EmpleadosDAO,String> tbcEliminar = new TableColumn<>("Eliminar");
+        tbcEliminar.setCellFactory(
+                new Callback<TableColumn<EmpleadosDAO, String>, TableCell<EmpleadosDAO, String>>() {
+                    @Override
+                    public TableCell<EmpleadosDAO, String> call(TableColumn<EmpleadosDAO, String> empleadosDAOStringTableColumn) {
+                        return new ButtonCell(2);
+                    }
+                }
+        );
+
+        tbvEmpleados.getColumns().addAll(tbcNomEmp,tbcRfcEmp,tbcSueldoEmp,tbcTelEmp,tbcDirEmp,tbcEditar,tbcEliminar);
         tbvEmpleados.setItems(objEmp.consultar());
     }
 
