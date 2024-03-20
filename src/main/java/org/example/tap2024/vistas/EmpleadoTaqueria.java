@@ -33,7 +33,7 @@ public class EmpleadoTaqueria extends Stage {
         imvEmp.setFitHeight(30);
         imvEmp.setFitWidth(30);
         btnAgregarEmpleado = new Button();
-        btnAgregarEmpleado.setOnAction(event -> new EmpleadosForm(tbvEmpleados));
+        btnAgregarEmpleado.setOnAction(event -> new EmpleadosForm(tbvEmpleados,null));
         btnAgregarEmpleado.setPrefSize(30,30);
         btnAgregarEmpleado.setGraphic(imvEmp);
         tlbMenu = new ToolBar(btnAgregarEmpleado);
